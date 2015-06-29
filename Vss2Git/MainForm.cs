@@ -115,7 +115,7 @@ namespace Hpdi.Vss2Git
                     {
                         gitExporter.CommitEncoding = encoding;
                     }
-                    gitExporter.ExportToGit(outDirTextBox.Text, InheritProjectDirCheckBox.Checked);
+                    gitExporter.ExportToGit(outDirTextBox.Text, InheritProjectDirCheckBox.Checked, textBoxURL.Text);
                 }
 
                 workQueue.Idle += delegate
@@ -246,6 +246,11 @@ namespace Hpdi.Vss2Git
             settings.AnyCommentSeconds = (int)anyCommentUpDown.Value;
             settings.SameCommentSeconds = (int)sameCommentUpDown.Value;
             settings.Save();
+        }
+
+        private void changesetGroupBox_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

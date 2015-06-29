@@ -49,6 +49,7 @@
             this.timeLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.outputGroupBox = new System.Windows.Forms.GroupBox();
             this.forceAnnotatedCheckBox = new System.Windows.Forms.CheckBox();
+            this.transcodeCheckBox = new System.Windows.Forms.CheckBox();
             this.InheritProjectDirCheckBox = new System.Windows.Forms.CheckBox();
             this.domainTextBox = new System.Windows.Forms.TextBox();
             this.domainLabel = new System.Windows.Forms.Label();
@@ -64,13 +65,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.anyCommentUpDown = new System.Windows.Forms.NumericUpDown();
-            this.transcodeCheckBox = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxURL = new System.Windows.Forms.TextBox();
             this.vssGroupBox.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.outputGroupBox.SuspendLayout();
             this.changesetGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sameCommentUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.anyCommentUpDown)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // vssGroupBox
@@ -169,7 +173,7 @@
             // goButton
             // 
             this.goButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.goButton.Location = new System.Drawing.Point(464, 352);
+            this.goButton.Location = new System.Drawing.Point(469, 452);
             this.goButton.Name = "goButton";
             this.goButton.Size = new System.Drawing.Size(75, 21);
             this.goButton.TabIndex = 3;
@@ -189,7 +193,7 @@
             this.revisionLabel,
             this.changeLabel,
             this.timeLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 376);
+            this.statusStrip.Location = new System.Drawing.Point(0, 476);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(629, 22);
             this.statusStrip.TabIndex = 5;
@@ -259,6 +263,18 @@
             this.forceAnnotatedCheckBox.Text = "Force use of annotated tag objects";
             this.forceAnnotatedCheckBox.UseVisualStyleBackColor = true;
             // 
+            // transcodeCheckBox
+            // 
+            this.transcodeCheckBox.AutoSize = true;
+            this.transcodeCheckBox.Checked = true;
+            this.transcodeCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.transcodeCheckBox.Location = new System.Drawing.Point(11, 116);
+            this.transcodeCheckBox.Name = "transcodeCheckBox";
+            this.transcodeCheckBox.Size = new System.Drawing.Size(228, 16);
+            this.transcodeCheckBox.TabIndex = 6;
+            this.transcodeCheckBox.Text = "Transcode commit comments to UTF-8";
+            this.transcodeCheckBox.UseVisualStyleBackColor = true;
+            // 
             // InheritProjectDirCheckBox
             // 
             this.InheritProjectDirCheckBox.AutoSize = true;
@@ -327,7 +343,7 @@
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(545, 352);
+            this.cancelButton.Location = new System.Drawing.Point(550, 452);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 21);
             this.cancelButton.TabIndex = 4;
@@ -343,12 +359,13 @@
             this.changesetGroupBox.Controls.Add(this.label2);
             this.changesetGroupBox.Controls.Add(this.label1);
             this.changesetGroupBox.Controls.Add(this.anyCommentUpDown);
-            this.changesetGroupBox.Location = new System.Drawing.Point(15, 277);
+            this.changesetGroupBox.Location = new System.Drawing.Point(20, 377);
             this.changesetGroupBox.Name = "changesetGroupBox";
             this.changesetGroupBox.Size = new System.Drawing.Size(560, 69);
             this.changesetGroupBox.TabIndex = 2;
             this.changesetGroupBox.TabStop = false;
             this.changesetGroupBox.Text = "Changeset Building";
+            this.changesetGroupBox.Enter += new System.EventHandler(this.changesetGroupBox_Enter);
             // 
             // label4
             // 
@@ -410,17 +427,34 @@
             this.anyCommentUpDown.Size = new System.Drawing.Size(54, 21);
             this.anyCommentUpDown.TabIndex = 1;
             // 
-            // transcodeCheckBox
+            // groupBox1
             // 
-            this.transcodeCheckBox.AutoSize = true;
-            this.transcodeCheckBox.Checked = true;
-            this.transcodeCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.transcodeCheckBox.Location = new System.Drawing.Point(11, 116);
-            this.transcodeCheckBox.Name = "transcodeCheckBox";
-            this.transcodeCheckBox.Size = new System.Drawing.Size(228, 16);
-            this.transcodeCheckBox.TabIndex = 6;
-            this.transcodeCheckBox.Text = "Transcode commit comments to UTF-8";
-            this.transcodeCheckBox.UseVisualStyleBackColor = true;
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.textBoxURL);
+            this.groupBox1.Location = new System.Drawing.Point(20, 288);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(591, 68);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Auto Push";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 19);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(29, 12);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "URL:";
+            // 
+            // textBoxURL
+            // 
+            this.textBoxURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxURL.Location = new System.Drawing.Point(63, 16);
+            this.textBoxURL.Name = "textBoxURL";
+            this.textBoxURL.Size = new System.Drawing.Size(522, 21);
+            this.textBoxURL.TabIndex = 5;
             // 
             // MainForm
             // 
@@ -428,7 +462,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(629, 398);
+            this.ClientSize = new System.Drawing.Size(629, 498);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.changesetGroupBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.outputGroupBox);
@@ -452,6 +487,8 @@
             this.changesetGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sameCommentUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.anyCommentUpDown)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -494,6 +531,9 @@
         private System.Windows.Forms.CheckBox InheritProjectDirCheckBox;
         private System.Windows.Forms.CheckBox forceAnnotatedCheckBox;
         private System.Windows.Forms.CheckBox transcodeCheckBox;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBoxURL;
 
     }
 }

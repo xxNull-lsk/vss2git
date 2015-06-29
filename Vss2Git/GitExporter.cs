@@ -70,7 +70,7 @@ namespace Hpdi.Vss2Git
             this.changesetBuilder = changesetBuilder;
         }
 
-        public void ExportToGit(string repoPath, bool inheritProjectDir)
+        public void ExportToGit(string repoPath, bool inheritProjectDir, string URL)
         {
             workQueue.AddLast(delegate(object work)
             {
@@ -222,6 +222,14 @@ namespace Hpdi.Vss2Git
                     }
 
                     ++changesetId;
+                }
+
+                git.CreateBranch("dev");
+                if (URL != string.Empty)
+                {
+                    git.Origin(URL);
+                    git.Push("master");
+                    git.Push("dev");
                 }
 
                 stopwatch.Stop();

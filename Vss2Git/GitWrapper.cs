@@ -110,6 +110,30 @@ namespace Hpdi.Vss2Git
             return ExecuteUnless(startInfo, "did not match any files");
         }
 
+        public bool CreateBranch(string name)
+        {
+            var startInfo = GetStartInfo("checkout -b " + Quote(name));
+
+            // add fails if there are no files (directories don't count)
+            return ExecuteUnless(startInfo, "did not match any files");
+        }
+
+        public bool Origin(string URL)
+        {
+            var startInfo = GetStartInfo("remote add origin " + Quote(URL));
+
+            // add fails if there are no files (directories don't count)
+            return ExecuteUnless(startInfo, "did not match any files");
+        }
+
+        public bool Push(string name)
+        {
+            var startInfo = GetStartInfo("push -u origin " + Quote(name));
+
+            // add fails if there are no files (directories don't count)
+            return ExecuteUnless(startInfo, "did not match any files");
+        }
+
         public bool Add(IEnumerable<string> paths)
         {
             if (CollectionUtil.IsEmpty(paths))
